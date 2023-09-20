@@ -15,6 +15,8 @@ public class MauiDrawingViewTests : BaseHandlerTest
 		{
 			ShouldClearOnFinish = false,
 			DrawAction = null,
+			DrawingLineStartedAction = null,
+			DrawingLineMovedAction = null,
 			LineColor = Colors.Black,
 			LineWidth = 5f,
 			IsMultiLineModeEnabled = false

@@ -56,6 +56,16 @@ public partial class MauiDrawingView
 	public Action<ICanvas, RectF>? DrawAction { get; set; }
 
 	/// <summary>
+	/// Used to handle drawing line started
+	/// </summary>
+	public Action<PointF>? DrawingLineStartedAction { get; set; }
+
+	/// <summary>
+	/// Used to handle drawing point moved
+	/// </summary>
+	public Action<PointF>? DrawingLineMovedAction { get; set; }
+
+	/// <summary>
 	/// Drawable background
 	/// </summary>
 	public Paint Paint
@@ -102,6 +112,7 @@ public partial class MauiDrawingView
 		};
 
 		Redraw();
+		DrawingLineStartedAction?.Invoke(previousPoint);
 
 		Lines.CollectionChanged += OnLinesCollectionChanged;
 	}
@@ -119,6 +130,7 @@ public partial class MauiDrawingView
 
 		Redraw();
 		currentLine?.Points.Add(currentPoint);
+		DrawingLineMovedAction?.Invoke(currentPoint);
 	}
 
 	void OnFinish()

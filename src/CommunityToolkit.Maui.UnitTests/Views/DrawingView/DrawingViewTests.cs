@@ -118,6 +118,30 @@ public class DrawingViewTests : BaseHandlerTest
 	}
 
 	[Fact]
+	public void DrawingLineStartedMapperIsCalled()
+	{
+		var drawingViewHandler = CreateViewHandler<MockDrawingViewHandler>(drawingView);
+		drawingView.Handler.Should().NotBeNull();
+
+		drawingViewHandler.MapDrawingLineStartedCount.Should().Be(1);
+
+		drawingView.DrawingLineStartedAction = (_) => testOutputHelper.WriteLine("DrawingLineStartedActionCalled");
+		drawingViewHandler.MapDrawingLineStartedCount.Should().Be(2);
+	}
+
+	[Fact]
+	public void DrawingLineMovedMapperIsCalled()
+	{
+		var drawingViewHandler = CreateViewHandler<MockDrawingViewHandler>(drawingView);
+		drawingView.Handler.Should().NotBeNull();
+
+		drawingViewHandler.MapDrawingLineMovedCount.Should().Be(1);
+
+		drawingView.DrawingLineMovedAction = (_) => testOutputHelper.WriteLine("DrawingLineMovedActionCalled");
+		drawingViewHandler.MapDrawingLineMovedCount.Should().Be(2);
+	}
+
+	[Fact]
 	public void CheckDefaultValues()
 	{
 		var expectedDefaultValue = new Maui.Views.DrawingView
@@ -128,6 +152,8 @@ public class DrawingViewTests : BaseHandlerTest
 			ShouldClearOnFinish = DrawingViewDefaults.ShouldClearOnFinish,
 			Lines = new ObservableCollection<IDrawingLine>(),
 			DrawAction = null,
+			DrawingLineStartedAction = null,
+			DrawingLineMovedAction = null,
 			DrawingLineCompletedCommand = null,
 		};
 

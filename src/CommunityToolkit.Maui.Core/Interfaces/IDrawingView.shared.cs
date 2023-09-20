@@ -41,6 +41,16 @@ public interface IDrawingView : IView
 	Action<ICanvas, RectF>? DrawAction { get; }
 
 	/// <summary>
+	/// Allows to handle the event when the drawing line is started.
+	/// </summary>
+	public Action<PointF>? DrawingLineStartedAction { get; }
+
+	/// <summary>
+	/// Allows to handle the event when the drawing point is moved.
+	/// </summary>
+	public Action<PointF>? DrawingLineMovedAction { get; }
+
+	/// <summary>
 	/// Retrieves a <see cref="Stream"/> containing an image of the <see cref="Lines"/> that are currently drawn on the <see cref="IDrawingView"/>.
 	/// </summary>
 	/// <param name="imageSizeWidth">Desired width of the image that is returned. The image will be resized proportionally.</param>

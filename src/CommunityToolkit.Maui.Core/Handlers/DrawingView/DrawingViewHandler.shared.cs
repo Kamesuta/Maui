@@ -17,6 +17,8 @@ public partial class DrawingViewHandler
 	{
 		// Be careful when editing the order of the mappers below. `IDrawingView.Lines` must be mapped last.
 		[nameof(IDrawingView.DrawAction)] = MapDrawAction,
+		[nameof(IDrawingView.DrawingLineStartedAction)] = MapDrawingLineStartedAction,
+		[nameof(IDrawingView.DrawingLineMovedAction)] = MapDrawingLineMovedAction,
 		[nameof(IDrawingView.ShouldClearOnFinish)] = MapShouldClearOnFinish,
 		[nameof(IDrawingView.IsMultiLineModeEnabled)] = MapIsMultiLineModeEnabled,
 		[nameof(IDrawingView.LineColor)] = MapLineColor,
@@ -119,6 +121,26 @@ public partial class DrawingViewHandler : ViewHandler<IDrawingView, MauiDrawingV
 	public static void MapDrawAction(DrawingViewHandler handler, IDrawingView view)
 	{
 		handler.PlatformView.SetDrawAction(view.DrawAction);
+	}
+
+	/// <summary>
+	/// Action that's triggered when the DrawingView <see cref="IDrawingView.DrawingLineStartedAction"/> property changes.
+	/// </summary>
+	/// <param name="handler">An instance of <see cref="DrawingViewHandler"/>.</param>
+	/// <param name="view">An instance of <see cref="IDrawingView"/>.</param>
+	public static void MapDrawingLineStartedAction(DrawingViewHandler handler, IDrawingView view)
+	{
+		handler.PlatformView.SetDrawingLineStartedAction(view.DrawingLineStartedAction);
+	}
+
+	/// <summary>
+	/// Action that's triggered when the DrawingView <see cref="IDrawingView.DrawingLineMovedAction"/> property changes.
+	/// </summary>
+	/// <param name="handler">An instance of <see cref="DrawingViewHandler"/>.</param>
+	/// <param name="view">An instance of <see cref="IDrawingView"/>.</param>
+	public static void MapDrawingLineMovedAction(DrawingViewHandler handler, IDrawingView view)
+	{
+		handler.PlatformView.SetDrawingLineMovedAction(view.DrawingLineMovedAction);
 	}
 
 	/// <summary>

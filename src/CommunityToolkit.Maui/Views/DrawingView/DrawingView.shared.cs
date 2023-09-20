@@ -62,6 +62,18 @@ public class DrawingView : View, IDrawingView
 		BindableProperty.Create(nameof(LineWidth), typeof(float), typeof(DrawingView), DrawingViewDefaults.LineWidth);
 
 	/// <summary>
+	/// Backing BindableProperty for the <see cref="DrawingLineStartedAction"/> property.
+	/// </summary>
+	public static readonly BindableProperty DrawingLineStartedActionProperty =
+		BindableProperty.Create(nameof(DrawingLineStartedAction), typeof(Action<PointF>), typeof(DrawingView));
+
+	/// <summary>
+	/// Backing BindableProperty for the <see cref="DrawingLineMovedAction"/> property.
+	/// </summary>
+	public static readonly BindableProperty DrawingLineMovedActionProperty =
+		BindableProperty.Create(nameof(DrawingLineMovedAction), typeof(Action<PointF>), typeof(DrawingView));
+
+	/// <summary>
 	/// Event occurred when drawing line completed.
 	/// </summary>
 	public event EventHandler<DrawingLineCompletedEventArgs> DrawingLineCompleted
@@ -140,6 +152,26 @@ public class DrawingView : View, IDrawingView
 	{
 		get => (Action<ICanvas, RectF>?)GetValue(DrawActionProperty);
 		set => SetValue(DrawActionProperty, value);
+	}
+
+	/// <summary>
+	/// Allows to handle the event when the drawing line is started.
+	/// This is a bindable property.
+	/// </summary>
+	public Action<PointF>? DrawingLineStartedAction
+	{
+		get => (Action<PointF>?)GetValue(DrawingLineStartedActionProperty);
+		set => SetValue(DrawingLineStartedActionProperty, value);
+	}
+
+	/// <summary>
+	/// Allows to handle the event when the drawing point is moved.
+	/// This is a bindable property.
+	/// </summary>
+	public Action<PointF>? DrawingLineMovedAction
+	{
+		get => (Action<PointF>?)GetValue(DrawingLineMovedActionProperty);
+		set => SetValue(DrawingLineMovedActionProperty, value);
 	}
 
 	/// <summary>

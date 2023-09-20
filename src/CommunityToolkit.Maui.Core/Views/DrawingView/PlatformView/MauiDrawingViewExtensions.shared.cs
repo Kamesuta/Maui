@@ -84,6 +84,26 @@ public static class MauiDrawingViewExtensions
 	}
 
 	/// <summary>
+	/// Set DrawingLineStartedAction action
+	/// </summary>
+	/// <param name="mauiDrawingView"><see cref="MauiDrawingView"/></param>
+	/// <param name="draw">value</param>
+	public static void SetDrawingLineStartedAction(this MauiDrawingView mauiDrawingView, Action<PointF>? draw)
+	{
+		mauiDrawingView.DrawingLineStartedAction = draw;
+	}
+
+	/// <summary>
+	/// Set DrawingLineMovedAction action
+	/// </summary>
+	/// <param name="mauiDrawingView"><see cref="MauiDrawingView"/></param>
+	/// <param name="draw">value</param>
+	public static void SetDrawingLineMovedAction(this MauiDrawingView mauiDrawingView, Action<PointF>? draw)
+	{
+		mauiDrawingView.DrawingLineMovedAction = draw;
+	}
+
+	/// <summary>
 	/// Set ClearOnFinish
 	/// </summary>
 	/// <param name="mauiDrawingView"><see cref="MauiDrawingView"/></param>

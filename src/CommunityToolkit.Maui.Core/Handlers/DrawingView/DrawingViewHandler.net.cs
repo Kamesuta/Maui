@@ -62,6 +62,24 @@ public partial class DrawingViewHandler : ViewHandler<IDrawingView, object>, IDr
 	}
 
 	/// <summary>
+	/// Action that's triggered when the DrawingView <see cref="IDrawingView.DrawingLineStartedAction"/> property changes.
+	/// </summary>
+	/// <param name="handler">An instance of <see cref="DrawingViewHandler"/>.</param>
+	/// <param name="view">An instance of <see cref="IDrawingView"/>.</param>
+	public static void MapDrawingLineStartedAction(DrawingViewHandler handler, IDrawingView view)
+	{
+	}
+
+	/// <summary>
+	/// Action that's triggered when the DrawingView <see cref="IDrawingView.DrawingLineMovedAction"/> property changes.
+	/// </summary>
+	/// <param name="handler">An instance of <see cref="DrawingViewHandler"/>.</param>
+	/// <param name="view">An instance of <see cref="IDrawingView"/>.</param>
+	public static void MapDrawingLineMovedAction(DrawingViewHandler handler, IDrawingView view)
+	{
+	}
+
+	/// <summary>
 	/// Action that's triggered when the DrawingView Background property changes.
 	/// </summary>
 	/// <param name="handler">An instance of <see cref="DrawingViewHandler"/>.</param>

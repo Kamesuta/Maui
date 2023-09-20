@@ -17,7 +17,9 @@ public class MockDrawingViewHandler : ViewHandler<IDrawingView, object>, IDrawin
 		[nameof(IDrawingView.LineColor)] = MapLineColor,
 		[nameof(IDrawingView.ShouldClearOnFinish)] = MapShouldSmoothPathWhenDrawn,
 		[nameof(IDrawingView.IsMultiLineModeEnabled)] = MapIsMultiLineModeEnabled,
-		[nameof(IDrawingView.DrawAction)] = MapDrawAction
+		[nameof(IDrawingView.DrawAction)] = MapDrawAction,
+		[nameof(IDrawingView.DrawingLineStartedAction)] = MapDrawingLineStartedAction,
+		[nameof(IDrawingView.DrawingLineMovedAction)] = MapDrawingLineMovedAction
 	};
 
 	public MockDrawingViewHandler() : this(DrawingViewPropertyMapper)
@@ -48,6 +50,8 @@ public class MockDrawingViewHandler : ViewHandler<IDrawingView, object>, IDrawin
 	public int MapShouldSmoothPathWhenDrawnCount { get; private set; }
 	public int MapIsMultiLineModeEnabledCount { get; private set; }
 	public int MapDrawCount { get; private set; }
+	public int MapDrawingLineStartedCount { get; private set; }
+	public int MapDrawingLineMovedCount { get; private set; }
 	public List<MauiDrawingLine> Lines { get; } = new();
 
 	static void MapLineWidth(MockDrawingViewHandler arg1, IDrawingView arg2)
@@ -73,6 +77,16 @@ public class MockDrawingViewHandler : ViewHandler<IDrawingView, object>, IDrawin
 	static void MapDrawAction(MockDrawingViewHandler arg1, IDrawingView arg2)
 	{
 		arg1.MapDrawCount++;
+	}
+
+	static void MapDrawingLineStartedAction(MockDrawingViewHandler arg1, IDrawingView arg2)
+	{
+		arg1.MapDrawingLineStartedCount++;
+	}
+
+	static void MapDrawingLineMovedAction(MockDrawingViewHandler arg1, IDrawingView arg2)
+	{
+		arg1.MapDrawingLineMovedCount++;
 	}
 
 	protected override object CreatePlatformView()
